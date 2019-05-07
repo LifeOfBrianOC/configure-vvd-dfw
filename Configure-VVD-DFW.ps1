@@ -319,9 +319,9 @@ Function Menu
         Write-Host -Object 'Configure VVD NSX Distributed Firewall' -ForegroundColor Cyan
         Write-Host     -Object '**********************'
         Write-Host -Object ''						
-        Write-Host -Object '1.  Create IP Sets & Security Groups'
+        Write-Host -Object '1.  Create DFW exclusions, IP Sets & Security Groups'
         Write-Host -Object ''
-		Write-Host -Object '2.  Create NSX Distributed Firewall Rules'
+	Write-Host -Object '2.  Create DFW Rules'
         Write-Host -Object ''
         Write-Host -Object 'Q.  Quit'
         Write-Host -Object $errout
@@ -332,16 +332,16 @@ Function Menu
             1 
             {
                 Get-PowerNSX
-				Connect-Server
-				ExcludeVM
+		Connect-Server
+		ExcludeVM
                 CreateNSXIpSets
                 CreateNSXSecurityGroups
                 anyKey
             }
-			2
+	    2
             {
                 Connect-Server
-				Create-NSXFirewallRules
+		Create-NSXFirewallRules
                 anyKey
             }
             3
