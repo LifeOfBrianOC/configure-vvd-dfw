@@ -86,6 +86,18 @@ $Rule12Name = "Allow VAMI to admins"
 $Rule13Name = "Allow VMware VADP Solution to admins"
 
 ### DO NOT MODIFY ANYTHING BELOW THIS LINE ###
+Function Get-PowerCli {
+# Check if PowerCli Module is installed
+Write-Host "Checking if PowerCli is installed" -ForegroundColor Cyan
+if (Get-Command -Module *VMWare*) {
+Write-Host "PowerCli is installed" -ForegroundColor Green
+}
+else {
+	Write-Host "PowerCli is not installed" -ForegroundColor Red
+	Write-Host "Attempting Install" -ForegroundColor Cyan
+	Find-Module -Name VMware.PowerCLI | Install-Module
+	}
+}
 
 Function Get-PowerNSX {
 # Check if PowerNSX Module is installed
@@ -331,7 +343,8 @@ Function Menu
         {
             1 
             {
-                Get-PowerNSX
+                Get-PowerCli
+		Get-PowerNSX
 		Connect-Server
 		ExcludeVM
                 CreateNSXIpSets
